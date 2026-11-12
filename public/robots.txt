@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://free-backlink-generator.web-free.site/sitemap.xml

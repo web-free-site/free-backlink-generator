@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="Free Backlink Generator">
+  <rect width="64" height="64" rx="14" fill="#0f4c5c"/>
+  <path d="M18 34c4-8 12-14 22-14 6 0 11 2 14 5l-4 4c-2-2-6-4-10-4-8 0-14 5-17 12l-5-3z" fill="#5eead4"/>
+  <circle cx="44" cy="38" r="6" fill="#fbbf24"/>
+  <path d="M14 42h20" stroke="#e2e8f0" stroke-width="4" stroke-linecap="round"/>
+</svg>

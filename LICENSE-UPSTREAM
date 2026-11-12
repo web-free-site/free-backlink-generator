@@ -1,0 +1,15 @@
+Upstream engine: backlink-generator-tool/backlink-generator-tool
+https://github.com/backlink-generator-tool/backlink-generator-tool
+
+Files derived from upstream (stored under public/vendor/):
+- backlink-generator.js
+- backlink-templates.json
+- youtube-backlink-templates.json
+- cors-proxies.json
+- stealth-iframe.css
+
+As of import, the upstream GitHub repository did not include a LICENSE or SPDX
+license metadata field. Gentil M. retains these files for use in this helper site
+and credits the upstream authors in the site footer and /about page. Contact
+gentil@quevvy.com if you are an upstream author and want attribution or license
+clarification updated.
