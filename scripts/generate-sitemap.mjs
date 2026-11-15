@@ -3,6 +3,8 @@ import path from 'node:path'
 
 const HOST = 'https://free-backlink-generator.web-free.site'
 const paths = [
+  "/how-to-submit-a-sitemap-to-google-search-console",
+  "/how-to-find-directories-for-backlinks",
   '/',
   '/fr/generateur-backlinks-gratuit',
   '/backlink-checklist',
