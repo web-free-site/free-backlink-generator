@@ -28,8 +28,7 @@ export function usePageMeta() {
       canonical.rel = 'canonical'
       document.head.appendChild(canonical)
     }
-  const path =
-      location.pathname === '/fr' ? '/fr/generateur-backlinks-gratuit' : page.path
+    const path = location.pathname === '/fr' ? '/fr/generateur-backlinks-gratuit' : page.path
     canonical.href = canonicalFor(path)
 
     const ogTitle = document.querySelector('meta[property="og:title"]')
@@ -38,6 +37,11 @@ export function usePageMeta() {
     if (ogDesc) ogDesc.setAttribute('content', page.description)
     const ogUrl = document.querySelector('meta[property="og:url"]')
     if (ogUrl) ogUrl.setAttribute('content', canonical.href)
+
+    const twTitle = document.querySelector('meta[name="twitter:title"]')
+    if (twTitle) twTitle.setAttribute('content', page.title)
+    const twDesc = document.querySelector('meta[name="twitter:description"]')
+    if (twDesc) twDesc.setAttribute('content', page.description)
 
     document.documentElement.lang = page.locale
   }, [location.pathname, page])

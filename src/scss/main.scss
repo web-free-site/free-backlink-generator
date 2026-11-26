@@ -123,6 +123,31 @@ a {
   font-size: 1.05rem;
 }
 
+.home-seo {
+  margin-top: 1.25rem;
+  padding-top: 1rem;
+  border-top: 1px solid var(--border);
+}
+
+.home-seo h2 {
+  font-family: Fraunces, Georgia, serif;
+  margin-top: 0;
+}
+
+.home-seo h3 {
+  margin-top: 1.35rem;
+  font-size: 1.1rem;
+}
+
+.home-seo ol,
+.home-seo ul {
+  padding-left: 1.25rem;
+}
+
+.home-seo li {
+  margin-bottom: 0.45rem;
+}
+
 .muted {
   color: var(--muted);
 }
