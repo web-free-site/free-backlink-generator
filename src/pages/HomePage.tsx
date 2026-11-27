@@ -1,8 +1,8 @@
 import { FC } from 'react'
 import { BacklinkTool } from '../components/BacklinkTool'
 import { JsonLd } from '../components/JsonLd'
+import { HomeSeoEn } from '../content/homeSeoEn'
 import { pageForPath } from '../seo/pages'
-import { Link } from 'react-router-dom'
 import { AdSlot } from '../components/ads/AdSlot'
 
 interface Props {
@@ -22,19 +22,23 @@ export const HomePage: FC<Props> = ({ seoPath }) => {
 
       <BacklinkTool />
 
-      <section className="how-to">
-        <h2>How to use this helper</h2>
-        <ol>
-          <li>Enter a valid HTTPS URL or domain (for example <code>example.com</code>).</li>
-          <li>Pick a mode: IFrame for quiet batches, Tab if popups are blocked, Ping for proxy-based fetches.</li>
-          <li>Allow popups when prompted; stop the run anytime with the same button.</li>
-          <li>Download the generated URL list for your records — results vary per third-party site.</li>
-        </ol>
-        <p>
-          Read the <Link to="/backlink-checklist">backlink checklist</Link> and browse the{' '}
-          <Link to="/free-directory-list">free directory list</Link> before expecting SEO impact.
-        </p>
-      </section>
+      {seoPath === '/' ? (
+        <HomeSeoEn />
+      ) : (
+        <section className="how-to">
+          <h2>How to use this helper</h2>
+          <ol>
+            <li>
+              Enter a valid HTTPS URL or domain (for example <code>example.com</code>).
+            </li>
+            <li>
+              Pick a mode: IFrame for quiet batches, Tab if popups are blocked, Ping for proxy-based fetches.
+            </li>
+            <li>Allow popups when prompted; stop the run anytime with the same button.</li>
+            <li>Download the generated URL list for your records — results vary per third-party site.</li>
+          </ol>
+        </section>
+      )}
 
       <AdSlot slot="content300x250" className="ad-content" />
 

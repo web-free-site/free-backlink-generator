@@ -14,12 +14,12 @@ export const SEO_PAGES: SeoPage[] = [
   {
     path: '/',
     locale: 'en',
-    title: 'Free Backlink Generator — browser SEO helper (no ranking guarantee)',
+    title: 'Free Backlink Generator — SEO lookup URLs in your browser (free)',
     description:
-      'Enter your domain and open or ping hundreds of free SEO, whois, and website-stat lookup URLs. Client-side helper tool with checklist and directories.',
+      'Free Backlink Generator builds stat, WHOIS, and SEO lookup URLs for your domain and runs them in your browser. No sign-up or upload—honest helper, no ranking guarantee.',
     h1: 'Free Backlink Generator',
     intro:
-      'This helper builds URLs that mention your site on third-party lookup services, then opens or pings them from your browser. It does not guarantee backlinks, indexing, or higher rankings.',
+      'Enter your domain to generate and open hundreds of third-party stat, WHOIS, and SEO lookup URLs from your browser. Helpful for audits—not a guarantee of backlinks or rankings.',
     faq: [
       {
         q: 'Does this tool guarantee SEO rankings?',
@@ -27,15 +27,19 @@ export const SEO_PAGES: SeoPage[] = [
       },
       {
         q: 'Is my domain sent to your server?',
-        a: 'No. URL generation and pinging run in your browser. Third-party services you open may log their own requests.',
+        a: 'No. URL generation and batch runs execute in your browser. Third-party lookup sites you open may log their own requests.',
       },
       {
         q: 'Which mode should I use?',
-        a: 'IFrame is quietest for batch lookups; Tab or Popup if a site blocks embedding; Ping uses public CORS proxies and may fail often.',
+        a: 'IFrame is quietest for batch lookups; Tab or popup mode if a site blocks embedding; Ping uses public CORS proxies and may fail often.',
       },
       {
         q: 'Are automated backlinks safe?',
-        a: 'Bulk automated links can look unnatural. Use this as a checklist helper, focus on quality content and editorial links.',
+        a: 'Bulk automated links can look unnatural. Use this as a research helper and focus on quality content, partnerships, and editorial links.',
+      },
+      {
+        q: 'Do I need an account or payment?',
+        a: 'No. The Free Backlink Generator is free to use in your browser with no sign-up. Optional on-page ads support hosting; the tool itself does not require payment.',
       },
     ],
   },
@@ -127,7 +131,8 @@ export const SEO_PAGES: SeoPage[] = [
     title: 'Ping backlinks and URLs for indexing — what to expect',
     description: 'When pinging helps discovery, and why it is not a ranking silver bullet.',
     h1: 'Ping URLs for indexing',
-    intro: 'Pinging notifies services that a URL exists; it does not force Google to rank or index permanently.',
+    intro:
+      'Pinging notifies services that a URL exists; it does not force Google to rank or index permanently.',
     faq: [
       {
         q: 'Does pinging guarantee indexing?',
@@ -183,6 +188,7 @@ export function canonicalFor(path: string): string {
 }
 
 export function pageForPath(pathname: string): SeoPage {
-  if (pathname === '/fr') return SEO_PAGES.find((p) => p.path === '/fr/generateur-backlinks-gratuit') ?? SEO_PAGES[0]
+  if (pathname === '/fr')
+    return SEO_PAGES.find((p) => p.path === '/fr/generateur-backlinks-gratuit') ?? SEO_PAGES[0]
   return SEO_PAGES.find((p) => p.path === pathname) ?? SEO_PAGES[0]
 }
