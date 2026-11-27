@@ -1,4 +1,5 @@
 import { SITE } from '../site'
+import homeEn from './homeEn.static.json'
 
 export type SeoPage = {
   path: string
@@ -17,31 +18,9 @@ export const SEO_PAGES: SeoPage[] = [
     title: 'Free Backlink Generator — SEO lookup URLs in your browser (free)',
     description:
       'Free Backlink Generator builds stat, WHOIS, and SEO lookup URLs for your domain and runs them in your browser. No sign-up or upload—honest helper, no ranking guarantee.',
-    h1: 'Free Backlink Generator',
-    intro:
-      'Enter your domain to generate and open hundreds of third-party stat, WHOIS, and SEO lookup URLs from your browser. Helpful for audits—not a guarantee of backlinks or rankings.',
-    faq: [
-      {
-        q: 'Does this tool guarantee SEO rankings?',
-        a: 'No. It only helps you run common lookup and ping workflows in your browser. Search engines decide rankings independently.',
-      },
-      {
-        q: 'Is my domain sent to your server?',
-        a: 'No. URL generation and batch runs execute in your browser. Third-party lookup sites you open may log their own requests.',
-      },
-      {
-        q: 'Which mode should I use?',
-        a: 'IFrame is quietest for batch lookups; Tab or popup mode if a site blocks embedding; Ping uses public CORS proxies and may fail often.',
-      },
-      {
-        q: 'Are automated backlinks safe?',
-        a: 'Bulk automated links can look unnatural. Use this as a research helper and focus on quality content, partnerships, and editorial links.',
-      },
-      {
-        q: 'Do I need an account or payment?',
-        a: 'No. The Free Backlink Generator is free to use in your browser with no sign-up. Optional on-page ads support hosting; the tool itself does not require payment.',
-      },
-    ],
+    h1: homeEn.h1,
+    intro: homeEn.intro,
+    faq: homeEn.faq,
   },
   {
     path: '/fr/generateur-backlinks-gratuit',

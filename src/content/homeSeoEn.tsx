@@ -1,98 +1,11 @@
 import { FC } from 'react'
-
-const HUB_REF = 'https://web-free.site/?ref=free-backlink-generator'
+import homeSeoBody from './homeSeoEn.body.html?raw'
 
 /** English homepage SEO body (~500–700 words). Rendered only on `/`. */
 export const HomeSeoEn: FC = () => (
-  <section className="home-seo" aria-labelledby="home-seo-title">
-    <h2 id="home-seo-title">About this free backlink generator</h2>
-    <p>
-      The Free Backlink Generator is a browser-based helper for site owners, freelancers, and small marketing
-      teams who want to speed up repetitive SEO lookup workflows without installing desktop software or
-      creating another SaaS account. You enter a domain or full HTTPS URL, and the tool assembles a long list
-      of third-party pages—website statistics panels, WHOIS lookups, SEO analyzers, and similar endpoints—that
-      can mention or resolve your site when opened or pinged. It is an automation layer for tasks people
-      already do manually when auditing a new project or checking whether a URL appears on public trackers.
-    </p>
-    <p>
-      This is not a magic ranking button. Search engines decide which links count and where pages appear in
-      results. The generator does not promise backlinks, PageRank, or permanent indexation. Many endpoints
-      simply display information about your domain when queried; others may fail, block embedded views, or
-      ignore automated requests. Treat the output as a organized starting point for research and outreach,
-      paired with solid content, clean technical SEO, and ethical promotion—not as a substitute for editorial
-      links from real publishers.
-    </p>
-
-    <h3>How to use the generator step by step</h3>
-    <ol>
-      <li>
-        Type your site address in the URL field. A bare domain such as <code>example.com</code> or a full{' '}
-        <code>https://</code> URL both work; the tool normalizes what you paste.
-      </li>
-      <li>
-        Choose a run mode. <strong>IFrame</strong> loads lookup pages quietly inside the batch runner—useful
-        when you want to process many URLs without dozens of tabs. <strong>Tab</strong> (or popup-style modes)
-        opens each destination in a new browser tab when embedded views are blocked. <strong>Ping</strong>{' '}
-        attempts lightweight fetches through public CORS proxies; it is the noisiest option and may fail often
-        on strict hosts.
-      </li>
-      <li>
-        Allow pop-ups if your browser asks. The upstream engine pauses until you confirm; you can stop the run
-        at any time with the same control you used to start it.
-      </li>
-      <li>
-        Review the progress bar and result list as each template URL is handled. Open interesting destinations
-        manually when you want to read what a service actually shows about your site.
-      </li>
-      <li>
-        Copy or download the generated URL list for your records, spreadsheets, or client reports. Keep
-        expectations realistic: third-party sites set their own policies, and results vary widely.
-      </li>
-    </ol>
-
-    <h3>Privacy and in-browser processing</h3>
-    <p>
-      URL building, template expansion, and most of the run logic execute locally in your tab. Your domain is
-      not uploaded to our server for processing—the static site is hosted on Web Free infrastructure, but the
-      generator workflow itself stays on your device. When you open or ping a third-party lookup page, that
-      external service receives a normal browser request and may log it under its own privacy policy. We do
-      not add extra tracking to the tool controls beyond what the published site shell already uses for
-      hosting and ads. If you work with sensitive client domains, run sessions on a trusted machine and review
-      each destination before batching hundreds of opens.
-    </p>
-
-    <h3>Practical use cases</h3>
-    <ul>
-      <li>
-        <strong>New site audits:</strong> Quickly see how many public stat and info services already resolve
-        your domain before you invest in outreach.
-      </li>
-      <li>
-        <strong>Freelancer deliverables:</strong> Export a URL pack as evidence that standard lookup workflows
-        were exercised, with clear disclaimers about guarantees.
-      </li>
-      <li>
-        <strong>Competitor reconnaissance:</strong> Compare how third-party panels treat your site versus a
-        competitor URL using the same template set—useful for training, not for spam.
-      </li>
-      <li>
-        <strong>Education:</strong> Demonstrate why bulk automated links differ from earned citations, and
-        when pinging or sitemap submission is more appropriate than mass tab opening.
-      </li>
-      <li>
-        <strong>Indexing awareness:</strong> After publishing important pages, some teams use ping-style lists
-        once alongside proper Search Console sitemaps—not as a daily habit.
-      </li>
-    </ul>
-
-    <p>
-      For complementary free utilities that also run in the browser—meta tag helpers, image compressors, PDF
-      tools, and more—visit the{' '}
-      <a href={HUB_REF} rel="noopener noreferrer">
-        Web Free tool hub
-      </a>
-      . This generator is part of that family of no-sign-up, client-first tools aimed at honest, practical
-      workflows.
-    </p>
-  </section>
+  <section
+    className="home-seo"
+    aria-labelledby="home-seo-title"
+    dangerouslySetInnerHTML={{ __html: homeSeoBody }}
+  />
 )

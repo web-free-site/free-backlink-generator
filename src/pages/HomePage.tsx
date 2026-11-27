@@ -2,6 +2,7 @@ import { FC } from 'react'
 import { BacklinkTool } from '../components/BacklinkTool'
 import { JsonLd } from '../components/JsonLd'
 import { HomeSeoEn } from '../content/homeSeoEn'
+import { useRemoveHomePrerender } from '../hooks/useRemoveHomePrerender'
 import { pageForPath } from '../seo/pages'
 import { AdSlot } from '../components/ads/AdSlot'
 
@@ -11,6 +12,8 @@ interface Props {
 
 export const HomePage: FC<Props> = ({ seoPath }) => {
   const page = pageForPath(seoPath)
+  const isEnglishHome = seoPath === '/'
+  useRemoveHomePrerender(isEnglishHome)
 
   return (
     <article className="content-page">

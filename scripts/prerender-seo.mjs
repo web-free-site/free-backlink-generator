@@ -1,9 +1,61 @@
 import fs from 'node:fs'
 import path from 'node:path'
+import { fileURLToPath } from 'node:url'
 
+const __dirname = path.dirname(fileURLToPath(import.meta.url))
+const repoRoot = path.resolve(__dirname, '..')
 const HOST = 'https://free-backlink-generator.web-free.site'
 const dist = path.resolve('dist')
 const baseHtml = fs.readFileSync(path.join(dist, 'index.html'), 'utf8')
+
+const homeEn = JSON.parse(fs.readFileSync(path.join(repoRoot, 'src/seo/homeEn.static.json'), 'utf8'))
+const homeSeoBody = fs.readFileSync(path.join(repoRoot, 'src/content/homeSeoEn.body.html'), 'utf8')
+
+function escapeHtml(text) {
+  return text.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;')
+}
+
+function buildFaqHtml(faq) {
+  return faq
+    .map(
+      (item) =>
+        `<details class="faq-item"><summary>${escapeHtml(item.q)}</summary><p>${escapeHtml(item.a)}</p></details>`,
+    )
+    .join('\n')
+}
+
+function buildHomePrerenderBlock() {
+  return `<article id="seo-prerender" class="seo-prerender content-page">
+<header class="page-hero">
+<h1>${escapeHtml(homeEn.h1)}</h1>
+<p class="lede">${escapeHtml(homeEn.intro)}</p>
+</header>
+<section class="home-seo" aria-labelledby="home-seo-title">
+${homeSeoBody.trim()}
+</section>
+<section class="faq">
+<h2>FAQ</h2>
+${buildFaqHtml(homeEn.faq)}
+</section>
+</article>`
+}
+
+function ensureFaqJsonLd(html) {
+  if (html.includes('"@type":"FAQPage"') || html.includes('"@type": "FAQPage"')) {
+    return html
+  }
+  const faqLd = {
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    mainEntity: homeEn.faq.map((f) => ({
+      '@type': 'Question',
+      name: f.q,
+      acceptedAnswer: { '@type': 'Answer', text: f.a },
+    })),
+  }
+  const tag = `<script type="application/ld+json">${JSON.stringify(faqLd)}</script>`
+  return html.replace('</head>', `${tag}\n</head>`)
+}
 
 const pages = [
   {
@@ -91,9 +143,18 @@ function buildPage(page) {
     /<meta\s+name="description"\s+content="[^"]*"\s*\/?>/,
     `<meta name="description" content="${page.description}" />`,
   )
-  html = html.replace(/<link\s+rel="canonical"\s+href="[^"]*"\s*\/?>/, `<link rel="canonical" href="${url}" />`)
-  html = html.replace(/<meta\s+property="og:url"\s+content="[^"]*"\s*\/?>/, `<meta property="og:url" content="${url}" />`)
-  html = html.replace(/<meta\s+property="og:title"\s+content="[^"]*"\s*\/?>/, `<meta property="og:title" content="${page.title}" />`)
+  html = html.replace(
+    /<link\s+rel="canonical"\s+href="[^"]*"\s*\/?>/,
+    `<link rel="canonical" href="${url}" />`,
+  )
+  html = html.replace(
+    /<meta\s+property="og:url"\s+content="[^"]*"\s*\/?>/,
+    `<meta property="og:url" content="${url}" />`,
+  )
+  html = html.replace(
+    /<meta\s+property="og:title"\s+content="[^"]*"\s*\/?>/,
+    `<meta property="og:title" content="${page.title}" />`,
+  )
   html = html.replace(
     /<meta\s+property="og:description"\s+content="[^"]*"\s*\/?>/,
     `<meta property="og:description" content="${page.description}" />`,
@@ -109,4 +170,19 @@ for (const page of pages) {
   fs.writeFileSync(path.join(dir, 'index.html'), buildPage(page))
 }
 
-console.log('Prerendered', pages.length, 'route shells')
+let homeHtml = baseHtml
+if (homeHtml.includes('id="seo-prerender"')) {
+  homeHtml = homeHtml.replace(/<article id="seo-prerender"[\s\S]*?<\/article>\s*/, '')
+}
+const homeBlock = buildHomePrerenderBlock()
+homeHtml = homeHtml.replace('<div id="root"></div>', `${homeBlock}\n    <div id="root"></div>`)
+homeHtml = ensureFaqJsonLd(homeHtml)
+fs.writeFileSync(path.join(dist, 'index.html'), homeHtml)
+
+const h1Count = (homeHtml.match(/<h1\b/gi) || []).length
+if (h1Count !== 1) {
+  console.error(`dist/index.html must contain exactly one <h1>, found ${h1Count}`)
+  process.exit(1)
+}
+
+console.log('Prerendered', pages.length, 'route shells + English homepage static content')
